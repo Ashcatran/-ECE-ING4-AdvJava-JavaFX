@@ -54,7 +54,7 @@ public class ApplicationJavaFX2 extends Application {
         CLI cli = new CLI();
         cli.setMain(this);
         cli.threads();
-        userController.show();
+        userController.show(); 
     }
 
     /**
