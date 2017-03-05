@@ -20,15 +20,15 @@ public class CLI {
         this.main = main;
     }
     
-    //Displays the UserList in the consule, using a diffrent Thread
+    //Displays the UserList in the console, using a different Thread
     public void threads() {
         Task task = new Task<ArrayList<String>>() {
             @Override
             public ArrayList<String> call() {
                 ArrayList<String> items = main.getUserList().getData();
-                for(String item: items) {
+                items.forEach((item) -> {
                     System.out.println(item);
-                }
+                });
                 System.out.println("----------");
                 return items;
             }

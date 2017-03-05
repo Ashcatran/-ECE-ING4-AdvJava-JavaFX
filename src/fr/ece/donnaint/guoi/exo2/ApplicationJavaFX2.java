@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  * @author nicolas, kevin
  */
 public class ApplicationJavaFX2 extends Application {
-    
+    private final CLI cli = new CLI();
     private UserList userList;
 
     public ApplicationJavaFX2() {        
@@ -27,6 +27,10 @@ public class ApplicationJavaFX2 extends Application {
 
     public UserList getUserList() {
         return userList;
+    }
+
+    public CLI getCli() {
+        return cli;
     }
     
     @Override
@@ -45,6 +49,7 @@ public class ApplicationJavaFX2 extends Application {
         //initialize Controller
         UserListController userController = loader.getController();
         userController.setMain(this);
+        userController.show(); 
         
         //open in new window
         Scene scene = new Scene(rootLayout, 800, 600);
@@ -52,10 +57,8 @@ public class ApplicationJavaFX2 extends Application {
         stage.show();
         
         //bonus: dispaly in console, using Threads
-        CLI cli = new CLI();
         cli.setMain(this);
         cli.threads();
-        userController.show(); 
     }
 
     /**

@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -23,6 +24,9 @@ public class UserListController implements Initializable {
     
     @FXML
     private ListView userLV;
+    
+    @FXML
+    private TextField addUserText;
 
     public UserListController() {
         
@@ -32,7 +36,6 @@ public class UserListController implements Initializable {
         this.main = main;
     }
       
-    
     /**
      * Initializes the controller class.
      */
@@ -45,5 +48,13 @@ public class UserListController implements Initializable {
         userLV.setItems(FXCollections.observableArrayList(main.getUserList().getData()));
     }
 
-    
+    //Update views on action
+    @FXML
+    public void updateView() {
+        //update data
+        this.main.getUserList().addUser(addUserText.getText());
+        //update userlist
+        this.show();//update CLI
+        this.main.getCli().threads();
+    }
 }
