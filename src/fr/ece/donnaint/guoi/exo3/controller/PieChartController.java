@@ -5,29 +5,48 @@
  */
 package fr.ece.donnaint.guoi.exo3.controller;
 
+import fr.ece.donnaint.guoi.exo3.ApplicationJavaFX3;
+import fr.ece.donnaint.guoi.exo3.majorModel.Major;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 /**
  * FXML Controller class
- *
- * @author nicolas
+ * Conroller for the pie chart and the table
+ * @author nicolas, kevin
  */
 public class PieChartController implements Initializable {
     
     @FXML
     private PieChart pieChart;
+    
+    @FXML
+    private TableColumn<Major, String> majorColumn;
+    
+    @FXML
+    private TableColumn<Major, String> numberColumn;
+    
+    @FXML
+    private TableView<Major> tableData;
+    
+    private ApplicationJavaFX3 main;
+    
+    //set initialization values to field main, and tableView and PieChart
+    public void setMain(ApplicationJavaFX3 main) {
+        this.main = main;
+        this.tableData.setItems(this.main.getMajorData());
+        this.setPieChartData();
+    }
+    
 
     public PieChartController() {
         
@@ -38,16 +57,41 @@ public class PieChartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("SI", 120),
-                new PieChart.Data("SE", 150),
-                new PieChart.Data("SA", 30),
-                new PieChart.Data("OCRES", 30),
-                new PieChart.Data("ENE", 130),
-                new PieChart.Data("FI", 50));
+        //set the data into the table
+        //set major column cell data from major field name
+        this.majorColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.majorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        //Action on Edit
+        this.majorColumn.setOnEditCommit((TableColumn.CellEditEvent<Major, String> changedName) -> {
+            ((Major) changedName.getTableView().getItems().get(changedName.getTablePosition().getRow())).setName(changedName.getNewValue());
+            setPieChartData();
+        });
+        
+        //set number of students column cell data from major field numberOfStudents
+        this.numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfStudents"));
+        this.numberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        //action on edit
+        this.numberColumn.setOnEditCommit((TableColumn.CellEditEvent<Major, String> changedName) -> {
+            ((Major) changedName.getTableView().getItems().get(changedName.getTablePosition().getRow())).setNumberOfStudents(changedName.getNewValue());
+            setPieChartData();
+        });
+        
         pieChart.setTitle("ECE Students repartition by major - 2017");
+
+    }
+    
+    //Updates the pie Chart values to the data stored into majorData
+    public void setPieChartData(){
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for(Major major:this.main.getMajorData()){
+            pieChartData.add(new PieChart.Data(major.getName(), Integer.parseInt(major.getNumberOfStudents())));
+        }
         pieChart.setData(pieChartData);
-    }    
+        
+    }
+    
+    
+    
+
 
 }

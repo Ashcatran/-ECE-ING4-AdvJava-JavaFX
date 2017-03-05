@@ -7,8 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.donnaint.guoi.exo3.controller.PieChartController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.donnaint.guoi.exo3.controller.PieChartController">
    <children>
-      <PieChart fx:id="pieChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" />
+      <PieChart fx:id="pieChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" />
+      <TableView fx:id="tableData" editable="true" layoutX="600.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="majorColumn" prefWidth="100.0" text="Major" />
+          <TableColumn fx:id="numberColumn" prefWidth="100.0" text="# of Students" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
