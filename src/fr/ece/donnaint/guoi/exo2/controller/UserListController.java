@@ -6,25 +6,17 @@
 package fr.ece.donnaint.guoi.exo2.controller;
 
 import fr.ece.donnaint.guoi.exo2.ApplicationJavaFX2;
-import fr.ece.donnaint.guoi.exo2.model.Model;
-import fr.ece.donnaint.guoi.exo2.model.UserList;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author nicolas
+ * @author nicolas, kevin
  */
 public class UserListController implements Initializable {
     private ApplicationJavaFX2 main;
@@ -46,10 +38,9 @@ public class UserListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       
     }  
     
+    //Set userList to ListView
     public void show(){
         userLV.setItems(FXCollections.observableArrayList(main.getUserList().getData()));
     }

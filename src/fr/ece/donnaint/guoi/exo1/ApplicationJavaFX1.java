@@ -19,10 +19,11 @@ public class ApplicationJavaFX1 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        //initialiez FXML
         Parent root = FXMLLoader.load(getClass().getResource("view/ApplicationJavaFXView.fxml"));
         
+        //open in new window
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }

@@ -7,16 +7,14 @@ package fr.ece.donnaint.guoi.exo1.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 /**
  *
- * @author nicolas
+ * @author nicolas, kevin
  */
 public class ApplicationJavaFXController implements Initializable {
     
@@ -26,6 +24,7 @@ public class ApplicationJavaFXController implements Initializable {
     @FXML
     private TextArea textAreaToSend;
     
+    //Button, onclick <- event we catch
     @FXML
     public void sendToConsole() {
         System.out.println(textAreaToSend.getText());
@@ -33,7 +32,6 @@ public class ApplicationJavaFXController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

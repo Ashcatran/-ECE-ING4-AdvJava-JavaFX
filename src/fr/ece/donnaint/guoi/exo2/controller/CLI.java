@@ -7,15 +7,11 @@ package fr.ece.donnaint.guoi.exo2.controller;
 
 import fr.ece.donnaint.guoi.exo2.ApplicationJavaFX2;
 import java.util.ArrayList;
-import java.util.Random;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
 /**
  *
- * @author nicolas
+ * @author nicolas, kevin
  */
 public class CLI {
     private ApplicationJavaFX2 main;
@@ -24,6 +20,7 @@ public class CLI {
         this.main = main;
     }
     
+    //Displays the UserList in the consule, using a diffrent Thread
     public void threads() {
         Task task = new Task<ArrayList<String>>() {
             @Override

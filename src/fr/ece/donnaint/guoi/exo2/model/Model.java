@@ -8,8 +8,8 @@ package fr.ece.donnaint.guoi.exo2.model;
 import java.util.ArrayList;
 
 /**
- *
- * @author Kevin
+ * This interface was used to implement data structure of the user list 
+ * @author Kevin, Nicolas
  */
 public interface Model {
     public ArrayList<String> getData();

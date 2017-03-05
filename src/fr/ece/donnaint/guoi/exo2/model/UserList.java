@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author nicolas
+ * @author nicolas, kevin
  */
 public class UserList implements Model {
 
@@ -22,7 +22,8 @@ public class UserList implements Model {
     public UserList(ArrayList<String> data) {
         this.data = data;
     }
-
+    
+    //adds a user to the UserList
     public ArrayList<String> addUser(String user) {
         this.data.add(user);
         return this.data;

@@ -10,14 +10,13 @@ import fr.ece.donnaint.guoi.exo2.controller.UserListController;
 import fr.ece.donnaint.guoi.exo2.model.UserList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
  *
- * @author nicolas
+ * @author nicolas, kevin
  */
 public class ApplicationJavaFX2 extends Application {
     
@@ -33,24 +32,26 @@ public class ApplicationJavaFX2 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
+        //initialiez data
         this.userList = new UserList();
         this.userList.addUser("Kevin");
         this.userList.addUser("Nicolas");
         
+        //initialiez FXML
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ApplicationJavaFX2.class.getResource("view/UserListView.fxml"));
         AnchorPane rootLayout = loader.load();
         
+        //initialize Controller
         UserListController userController = loader.getController();
         userController.setMain(this);
         
-        
-        
+        //open in new window
         Scene scene = new Scene(rootLayout, 800, 600);
-        
         stage.setScene(scene);
         stage.show();
         
+        //bonus: dispaly in console, using Threads
         CLI cli = new CLI();
         cli.setMain(this);
         cli.threads();
